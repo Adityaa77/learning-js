@@ -1,0 +1,31 @@
+body {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh; /* full viewport height */
+    background-image: url(Clock/jwqumjjj.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+}
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 900;
+    min-height: 100vh;
+}
+#Clock{
+     background-color: black;
+      margin-bottom: 1em;
+}
+.bordered-video {
+    border: 5px solid #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    margin-top: 1em;
+}

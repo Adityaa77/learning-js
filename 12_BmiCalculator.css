@@ -1,0 +1,27 @@
+body{
+    margin: 2px;
+    background-color: grey;
+}
+.Container{
+    display: flex;
+   text-align: center;
+   justify-content: center;
+   height: 40px;
+   size: 5em;
+   border: 3px;
+   font-size: 3em;
+}
+
+#myh1{
+    text-align: center;
+    height: 60px;
+    font-size: 5em;
+}
+#WeightGuide{
+    font-size: 20px;
+}
+button {
+  width: 150px;   
+  height: 60px;   
+  font-size: 25px;
+}

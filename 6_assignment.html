@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+</head>
+<body>
+<div class="card">
+    <img id="profilePhoto" src="images/images/download.jpg" alt="Avatar" style="width:50%">
+    <div class="container">
+        <h4 id="profileName">John Doe</h4> <p>Architect & Engineer</p>
+        <p>Follower Count: <span id="followerCount">696969</span></p>
+        <button id="fetchDataButton">Get New Data</button>
+    </div>
+</div>
+
+<style>
+    .card {
+        width: 500px;
+        height: 600px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        text-align: center; /* Center the content */
+        padding-top: 20px; /* Add some padding at the top */
+    }
+    .card img {
+        border-radius: 50%; /* Make the image round */
+        width: 200px; /* Adjust image size */
+        height: 200px; /* Adjust image size */
+        object-fit: cover; /* Ensure image covers the area without distortion */
+        margin-bottom: 15px;
+    }
+    .container {
+        padding: 2px 16px;
+    }
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    button:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+
+  const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+  const button=document.getElementById('fetchDataButton');
+
+button.addEventListener('click',(e) =>{
+  const xhr=new XMLHttpRequest();  
+  xhr.open('GET',requestUrl);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        const followerElement = document.getElementById('followerCount');
+        followerElement.textContent = `Followers: ${data.followers}`;
+        console.log(`Fetched: ${data.followers}`);
+        console.log(data.followers);
+ }
+  };
+xhr.send();
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise in JS - Login Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 250px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        #but {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #but:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #login {
+            display: block;
+            margin-top: 8px;
+            font-size: 16px;
+            color: #ffeb3b;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+
+            input[type="text"], #but {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login Portal</h2>
+        <input type="text" id="myip" placeholder="Enter your username">
+        <br>
+        <button id="but">Submit</button>
+        <p>Login-</p>
+        <span id="login">..</span>
+    </div>
+
+    <script>
+        const inputtext=document.querySelector('#myip');
+        const button=document.querySelector('#but');
+        const loginSpan = document.querySelector('#login');
+        // function loginPage(inputtext){
+        //  return new Promise((resolve,reject)=>{
+        //     setTimeout(()=>{
+        //     if(inputtext=='aditya'){
+        //     resolve('Login Succesful');
+        //     }
+        //  else{
+        //      reject('Invalid Username');
+        //  }
+        //     },2000)
+        // });
+        // }
+
+        function loginPage(inputUsername) {
+    return fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Network error");
+            }
+            return res.json();
+        })
+        .then(users => {
+            const user = users.find(u => u.username.toLowerCase() === inputUsername.toLowerCase());
+            if (user) {
+                return 'Login Successful';
+            } else {
+                throw 'Invalid Username';
+            }
+        });
+}
+
+        button.addEventListener('click', () => {
+                loginSpan.textContent = 'Logging in...';
+        loginPage(inputtext.value)
+          .then(data => loginSpan.textContent = 'Logged in')
+          .catch(error =>loginSpan.textContent = 'Invalid Username')
+          .finally(() => console.log('Done'));
+        })
+
+    //🧪 Try with These Valid Usernames:
+    // Bret
+    // Antonette
+    // Samantha
+    // Karianne
+    // Kamren
+    // Leopoldo_Corkery
+    // Elwyn.Skiles
+    // Maxime_Nienow
+    // Delphine
+    // Moriah.Stanton
+    </script>
+</body>
+</html>
